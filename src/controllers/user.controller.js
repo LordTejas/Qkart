@@ -38,7 +38,6 @@ const { userService } = require("../services");
  * 
  * Example responses:
  * HTTP 200 - If request successfully completes
- * HTTP 403 - If request data doesn't match that of authenticated user
  * HTTP 404 - If user entity not found in DB
  * 
  * 
