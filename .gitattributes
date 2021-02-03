@@ -1,0 +1,51 @@
+# Root folder
+.gitattributes merge=copy-merge
+.gitignore merge=copy-merge
+ecosystem.config.json merge=copy-merge
+jest.config.js merge=copy-merge
+package.json merge=copy-merge
+setup.sh merge=copy-merge
+
+# __CRIO__
+__CRIO__/metadata.json merge=copy-merge
+
+# data/
+data/export_qkart_products.json merge=copy-merge
+data/export_qkart_users.json merge=copy-merge
+
+# src/config/
+src/config/config.js merge=copy-merge
+
+# src/controllers/
+src/controllers/index.js merge=copy-merge
+
+# src/models/
+src/models/index.js merge=copy-merge
+
+# src/services/
+src/services/index.js merge=copy-merge
+
+# src/utils/
+src/utils/ApiError.js merge=copy-merge
+src/utils/catchAsync.js merge=copy-merge
+src/utils/pick.js merge=copy-merge
+
+# src/validations/
+src/validations/custom.validation.js merge=copy-merge
+src/validations/index.js merge=copy-merge
+
+# tests/config/
+tests/config/config.js
+
+# tests/integration/
+tests/integration/auth.test.js
+tests/integration/cart.test.js
+tests/integration/product.test.js
+tests/integration/user.test.js
+
+# tests/unit/
+tests/auth.unit.test.js
+tests/cart.unit.test.js
+tests/product.unit.test.js
+tests/token.unit.test.js
+tests/user.unit.test.js
