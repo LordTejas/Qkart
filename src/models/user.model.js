@@ -52,7 +52,7 @@ userSchema.methods.isPasswordMatch = async function (password) {
 };
 
 
+
 /**
  * @typedef User
  */
-

@@ -38,7 +38,7 @@ const { userService } = require("../services");
  *   "address": "ADDRESS_NOT_SET"
  * }
  * 
- * Example responses:
+ * Example response status codes:
  * HTTP 200 - If request successfully completes
  * HTTP 403 - If request data doesn't match that of authenticated user
  * HTTP 404 - If user entity not found in DB

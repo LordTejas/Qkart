@@ -4,12 +4,14 @@ const ApiError = require("../utils/ApiError");
 
 /**
  * Get User by id
+ * - Fetch user object from Mongo using the "_id" field and return user object
  * @param {String} id
  * @returns {Promise<User>}
  */
 
 /**
  * Get user by email
+ * - Fetch user object from Mongo using the "email" field and return user object
  * @param {string} email
  * @returns {Promise<User>}
  */

@@ -13,39 +13,53 @@ __CRIO__/metadata.json merge=copy-merge
 data/export_qkart_products.json merge=copy-merge
 data/export_qkart_users.json merge=copy-merge
 
+# frontend/
+frontend/** merge=copy-merge
+
 # src/config/
 src/config/config.js merge=copy-merge
+src/config/logger.js
+src/config/morgan.js
+src/config/tokens.js
 
 # src/controllers/
 src/controllers/index.js merge=copy-merge
+src/controllers/product.controller.js
+
+# src/middlewares
+src/middlewares/error.js
+src/middlewares/validate.js
 
 # src/models/
+src/models/plugins/*
 src/models/index.js merge=copy-merge
+src/models/product.model.js
+
+# src/routes/
+src/routes/v1/product.route.js
 
 # src/services/
 src/services/index.js merge=copy-merge
+src/services/product.service.js
 
 # src/utils/
-src/utils/ApiError.js merge=copy-merge
-src/utils/catchAsync.js merge=copy-merge
-src/utils/pick.js merge=copy-merge
+src/utils/* merge=copy-merge
 
 # src/validations/
 src/validations/custom.validation.js merge=copy-merge
 src/validations/index.js merge=copy-merge
+src/validations/cart.validation.js
+src/validations/product.validation.js
 
 # tests/config/
-tests/config/config.js
+tests/config/config.js merge=copy-merge
 
 # tests/integration/
-tests/integration/auth.test.js
-tests/integration/cart.test.js
-tests/integration/product.test.js
-tests/integration/user.test.js
+tests/integration/* merge=copy-merge
 
 # tests/unit/
-tests/auth.unit.test.js
-tests/cart.unit.test.js
-tests/product.unit.test.js
-tests/token.unit.test.js
-tests/user.unit.test.js
+tests/unit/auth.unit.test.js merge=copy-merge
+tests/unit/cart.unit.test.js merge=copy-merge
+tests/unit/product.unit.test.js merge=copy-merge
+tests/unit/token.unit.test.js merge=copy-merge
+tests/unit/user.unit.test.js merge=copy-merge
