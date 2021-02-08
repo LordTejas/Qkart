@@ -77,19 +77,14 @@ const updateProductInCart = catchAsync(async (req, res) => {
 });
 
 /**
- * Checkout
- *
- * Example responses:
- *
- * HTTP 200
- * HTTP 404
- * HTTP 500
- * @param {User} req.user
- *
+ * Checkout user's cart
  */
 const checkout = catchAsync(async (req, res) => {
-  await cartService.checkout(req.user);
-  return res.status(httpStatus.NO_CONTENT).send();
+   await cartService.checkout();
+  return (
+    res
+      .send()
+  );
 });
 
 module.exports = {

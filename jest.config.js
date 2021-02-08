@@ -6,6 +6,4 @@ module.exports = {
     NODE_ENV: "test",
   },
   restoreMocks: true,
-  // Avoid timeout error when debugging tests
-  testTimeout: 10000
 };
