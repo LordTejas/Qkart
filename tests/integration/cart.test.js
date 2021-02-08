@@ -356,5 +356,5 @@ describe("Cart routes", () => {
       expect(res.status).toEqual(httpStatus.UNAUTHORIZED);
     });
   });
-
+  
 });

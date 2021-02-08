@@ -89,7 +89,10 @@ describe("Cart test", () => {
     it("should save and return the updated cart", async () => {
       // Mock Cart.findOne() method to return predefined cart
       mockingoose(Cart).toReturn(cartWithProductsUserOne, "findOne");
-
+      mockingoose(Product).toReturn(
+        cartWithProductsUserOne.cartItems[0].product,
+        "findOne"
+      );
       // Mock Cart.save() function
       const updatedQty = 5;
       let saveMock = (...args) => {
@@ -192,5 +195,4 @@ describe("Cart test", () => {
       );
     });
   });
-
 });
