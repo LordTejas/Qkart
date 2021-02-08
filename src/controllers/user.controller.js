@@ -36,7 +36,7 @@ const { userService } = require("../services");
  *   "address": "ADDRESS_NOT_SET"
  * }
  * 
- * Example responses:
+ * Example response status codes:
  * HTTP 200 - If request successfully completes
  * HTTP 404 - If user entity not found in DB
  * 

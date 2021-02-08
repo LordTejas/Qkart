@@ -5,6 +5,7 @@ const ApiError = require("../utils/ApiError");
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement getUserById(id)
 /**
  * Get User by id
+ * - Fetch user object from Mongo using the "_id" field and return user object
  * @param {String} id
  * @returns {Promise<User>}
  */
@@ -12,6 +13,7 @@ const ApiError = require("../utils/ApiError");
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement getUserByEmail(email)
 /**
  * Get user by email
+ * - Fetch user object from Mongo using the "email" field and return user object
  * @param {string} email
  * @returns {Promise<User>}
  */
