@@ -2,15 +2,13 @@ const request = require("supertest");
 const faker = require("faker");
 const httpStatus = require("http-status");
 const httpMocks = require("node-mocks-http");
-const moment = require("moment");
-const bcrypt = require("bcryptjs");
 const app = require("../../src/app");
 const config = require("../../src/config/config");
 const auth = require("../../src/middlewares/auth");
 const { tokenService } = require("../../src/services");
 const ApiError = require("../../src/utils/ApiError");
 const setupTestDB = require("../utils/setupTestDB");
-const { User, Token } = require("../../src/models");
+const { User } = require("../../src/models");
 const { tokenTypes } = require("../../src/config/tokens");
 const { userOne, insertUsers } = require("../fixtures/user.fixture");
 const { userOneAccessToken } = require("../fixtures/token.fixture");
@@ -72,9 +70,7 @@ describe("Auth routes", () => {
     test("should return 400 error if email is invalid", async () => {
       newUser.email = "invalidEmail";
 
-      const res = await request(app)
-        .post("/v1/auth/register")
-        .send(newUser)
+      const res = await request(app).post("/v1/auth/register").send(newUser);
 
       expect(res.status).toEqual(httpStatus.BAD_REQUEST);
     });
@@ -283,10 +279,10 @@ describe("Auth routes", () => {
 
     test("should call next with unauthorized error if the token is not an access token", async () => {
       await insertUsers([userOne]);
-      const expires = moment().add(
-        config.jwt.accessExpirationMinutes,
-        "minutes"
-      );
+
+      const expires =
+        Math.floor(Date.now() / 1000) + config.jwt.accessExpirationMinutes * 60;
+
       const refreshToken = tokenService.generateToken(
         userOne._id,
         expires,
@@ -310,10 +306,9 @@ describe("Auth routes", () => {
 
     test("should call next with unauthorized error if access token is generated with an invalid secret", async () => {
       await insertUsers([userOne]);
-      const expires = moment().add(
-        config.jwt.accessExpirationMinutes,
-        "minutes"
-      );
+      const expires =
+        Math.floor(Date.now() / 1000) + config.jwt.accessExpirationMinutes * 60;
+
       const accessToken = tokenService.generateToken(
         userOne._id,
         expires,
@@ -338,7 +333,8 @@ describe("Auth routes", () => {
 
     test("should call next with unauthorized error if access token is expired", async () => {
       await insertUsers([userOne]);
-      const expires = moment().subtract(1, "minutes");
+      const expires = Math.floor(Date.now() / 1000) - 1 * 60;
+
       const accessToken = tokenService.generateToken(
         userOne._id,
         expires,
