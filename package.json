@@ -12,6 +12,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
+    "core-js": "^3.0.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.0",
     "dotenv": "^8.2.0",
@@ -30,6 +31,10 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.4.0",
+    "@babel/preset-react": "^7.0.0",
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.4.0",
