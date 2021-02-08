@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken');
-const moment = require('moment');
 const config = require('../config/config');
-const ApiError = require('../utils/ApiError');
 const { tokenTypes } = require('../config/tokens');
 
 /**
@@ -13,9 +11,9 @@ const { tokenTypes } = require('../config/tokens');
  * - Token expiration must be set to the value of `expires` parameter
  * 
  * @param {ObjectId} userId - Mongo user id
- * @param {Moment} expires - token expiration time in seconds since unix epoch
- * @param {string} type
- * @param {string} [secret]
+ * @param {Number} expires - Token expiration time in seconds since unix epoch
+ * @param {string} type - Access token type eg: Access, Refresh
+ * @param {string} [secret] - Secret key to sign the token, defaults to config.jwt.secret
  * @returns {string}
  */
 const generateToken = (userId, expires, type, secret = config.jwt.secret) => {
