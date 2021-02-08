@@ -6,8 +6,7 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "start": "pm2 start ecosystem.config.json --no-daemon",
-    "dev": "cross-env NODE_ENV=development nodemon src/index.js",
+    "start": "nodemon src/index.js",
     "test": "jest -i"
   },
   "dependencies": {
@@ -39,7 +38,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-security": "^1.4.0",
     "faker": "^5.1.0",
-    "jest": "^26.5.2",
+    "jest": "^22.4.4",
     "mockingoose": "^2.13.2",
     "node-mocks-http": "^1.8.0",
     "nodemon": "^2.0.0",

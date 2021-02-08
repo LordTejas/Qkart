@@ -89,7 +89,10 @@ describe("Cart test", () => {
     it("should save and return the updated cart", async () => {
       // Mock Cart.findOne() method to return predefined cart
       mockingoose(Cart).toReturn(cartWithProductsUserOne, "findOne");
-
+      mockingoose(Product).toReturn(
+        cartWithProductsUserOne.cartItems[0].product,
+        "findOne"
+      );
       // Mock Cart.save() function
       const updatedQty = 5;
       let saveMock = (...args) => {
@@ -188,81 +191,6 @@ describe("Cart test", () => {
       expect(res).rejects.toEqual(
         expect.objectContaining({
           statusCode: httpStatus.BAD_REQUEST,
-        })
-      );
-    });
-  });
-
-  describe("Checkout", () => {
-    it("should update user balance and empty the cart on success", async () => {
-      let userSaveMock = (...args) => {
-        expect(args[0].walletMoney).toBeLessThan(userOne.walletMoney);
-        return args[0];
-      };
-
-      let cartSaveMock = (...args) => {
-        expect(args[0].cartItems.length).toEqual(0);
-        return args[0];
-      };
-
-      mockingoose(User).toReturn(userSaveMock, "save");
-      mockingoose(Cart).toReturn(cartSaveMock, "save");
-      mockingoose(Cart).toReturn(cartWithProductsUserOne, "findOne");
-
-      const userOneMongooseDoc = new User(userOne);
-      await cartService.checkout(userOneMongooseDoc);
-    });
-
-    it("should throw 400 error if cart is empty", async () => {
-      mockingoose(Cart).toReturn(emptyCart, "findOne");
-
-      const res = cartService.checkout(userOne);
-
-      expect(res).rejects.toThrow(ApiError);
-      expect(res).rejects.toEqual(
-        expect.objectContaining({
-          statusCode: httpStatus.BAD_REQUEST,
-        })
-      );
-    });
-
-    it("should throw 400 error if address is not set", async () => {
-      mockingoose(Cart).toReturn(cartWithProductsUserTwo, "findOne");
-
-      expect(userTwo.address).toEqual("ADDRESS_NOT_SET");
-      const res = cartService.checkout(userTwo);
-
-      expect(res).rejects.toThrow(ApiError);
-      expect(res).rejects.toEqual(
-        expect.objectContaining({
-          statusCode: httpStatus.BAD_REQUEST,
-        })
-      );
-    });
-
-    it("should throw 400 error if wallet balance is insufficient", async () => {
-      mockingoose(Cart).toReturn(cartWithProductsUserOne, "findOne");
-
-      const userOneWithZeroBalance = { ...userOne, walletMoney: 0 };
-      const res = cartService.checkout(userOneWithZeroBalance);
-
-      expect(res).rejects.toThrow(ApiError);
-      expect(res).rejects.toEqual(
-        expect.objectContaining({
-          statusCode: httpStatus.BAD_REQUEST,
-        })
-      );
-    });
-
-    it("should throw 404 error if cart is null", async () => {
-      mockingoose(Cart).toReturn(null, "findOne");
-
-      const res = cartService.checkout(userOne);
-
-      expect(res).rejects.toThrow(ApiError);
-      expect(res).rejects.toEqual(
-        expect.objectContaining({
-          statusCode: httpStatus.NOT_FOUND,
         })
       );
     });
