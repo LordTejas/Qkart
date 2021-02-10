@@ -1,6 +1,4 @@
-const httpStatus = require('http-status');
-const { Product } = require('../models');
-const ApiError = require('../utils/ApiError');
+const { Product } = require("../models");
 
 /**
  * Get Product by id
@@ -16,9 +14,8 @@ const getProductById = async (id) => {
  * @returns {Promise<List<Products>>}
  */
 const getProducts = async () => {
-  return Product.find({})
+  return Product.find({});
 };
-
 
 module.exports = {
   getProductById,

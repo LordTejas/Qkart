@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const { password } = require('./custom.validation');
+const Joi = require("joi");
+const { password } = require("./custom.validation");
 
 // TODO: CRIO_TASK_MODULE_AUTH - Define request validation schema for user registration
 /**
@@ -18,7 +18,6 @@ const register = {
  */
 const login = {
 };
-
 
 module.exports = {
   register,
