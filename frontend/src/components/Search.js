@@ -260,7 +260,7 @@ class Search extends React.Component {
           product={product}
           addToCart={() => {
             if (this.state.loggedIn) {
-              this.cartRef.current.pushToCart(product._id, 1, true);              
+              this.cartRef.current.postToCart(product._id, 1, true);              
             }
             else {
               this.props.history.push("/login");

@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const faker = require("faker");
-const User = require("../../src/models/user.model");
 const { Product } = require("../../src/models");
 
 const productOne = {
