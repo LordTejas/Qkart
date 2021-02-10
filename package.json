@@ -1,5 +1,5 @@
 {
-  "name": "qkart_me_backend_dynamic",
+  "name": "qkart_me_backend",
   "version": "1.4.1",
   "main": "src/index.js",
   "engines": {
@@ -46,7 +46,7 @@
     "jest": "^22.4.4",
     "mockingoose": "^2.13.2",
     "node-mocks-http": "^1.8.0",
-    "nodemon": "^2.0.0",
+    "nodemon": "^2.0.7",
     "prettier": "^2.0.5",
     "supertest": "^4.0.2"
   }

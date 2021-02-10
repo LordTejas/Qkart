@@ -1,5 +1,4 @@
 const request = require("supertest");
-const faker = require("faker");
 const httpStatus = require("http-status");
 const app = require("../../src/app");
 const setupTestDB = require("../utils/setupTestDB");
@@ -40,6 +39,6 @@ describe("User routes", () => {
       });
 
     });
-    
+
   });
 });

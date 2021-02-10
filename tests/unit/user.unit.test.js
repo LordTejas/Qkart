@@ -61,5 +61,5 @@ describe("User test", () => {
       expect(userService.createUser(userOne)).rejects.toThrow(ApiError);
     });
   });
-  
+
 });
