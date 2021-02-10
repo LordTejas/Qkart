@@ -29,8 +29,6 @@ const { cartService } = require("../services");
  *  "paymentOption": "PAYMENT_OPTION_DEFAULT",
  *  "__v": 33
  *
- * @param {User} req.user
- *
  */
 const getCart = catchAsync(async (req, res) => {
   const cart = await cartService.getCartByUser(req.user);
@@ -40,9 +38,6 @@ const getCart = catchAsync(async (req, res) => {
 /**
  * Add a product to cart
  *
- * @param {string} req.body.productId
- * @param {string} req.body.quantity
- * @param {User} req.user
  *
  */
 const addProductToCart = catchAsync(async (req, res) => {
@@ -69,9 +64,6 @@ const addProductToCart = catchAsync(async (req, res) => {
  * HTTP 200 - on successful update
  * HTTP 204 - on successful product deletion
  * 
- * @param {string} req.body.productId
- * @param {string} req.body.quantity
- * @param {User} req.user
  *
  */
 const updateProductInCart = catchAsync(async (req, res) => {

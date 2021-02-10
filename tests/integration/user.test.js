@@ -91,10 +91,9 @@ describe("User routes", () => {
         await insertUsers([userOne, userTwo]);
 
         const res = await request(app)
-          .get(`/v1/users/${userTwo._id}?q=addressr`)
+          .get(`/v1/users/${userTwo._id}?q=address`)
           .set("Authorization", `Bearer ${userOneAccessToken}`)
           .send();
-
         expect(res.status).toEqual(httpStatus.FORBIDDEN);
       });
     });

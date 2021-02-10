@@ -8,7 +8,7 @@ const { userService } = require("../services");
  * Get user details
  *  - Use service layer to get User data
  * 
- *  - If no query param exist, return the whole user object
+ *  - If no query param "q" exist, return the whole user object fetched from Mongo
  *  - If query param, "q" equals "address", return only the address field of the user
  *
  *  - If data exists for the provided "userId", return 200 status code and the object
@@ -40,14 +40,12 @@ const { userService } = require("../services");
  *   "address": "ADDRESS_NOT_SET"
  * }
  * 
+ *
  * Example response status codes:
  * HTTP 200 - If request successfully completes
  * HTTP 403 - If request data doesn't match that of authenticated user
  * HTTP 404 - If user entity not found in DB
  * 
- * 
- * @param {string} req.params.userId
- * @param {User} req.user
  * @returns {User | {address: String}}
  *
  */

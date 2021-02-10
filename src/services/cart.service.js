@@ -28,7 +28,7 @@ const getCartByUser = async (user) => {
  *
  * - If product to add already in user's cart, throw ApiError with
  * --- status code  - 400 BAD REQUEST
- * --- message - "Product already in cart"
+ * --- message - "Product already in cart. Use the cart sidebar to update or remove product from cart"
  *
  * - If product to add not in "products" collection in MongoDB, throw ApiError with
  * --- status code  - 400 BAD REQUEST
