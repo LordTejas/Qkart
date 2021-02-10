@@ -61,7 +61,7 @@ describe("User test", () => {
       expect(userService.createUser(userOne)).rejects.toThrow(ApiError);
     });
   });
-  
+
   describe("GET user's address", () => {
     it("should only ask for email and address fields", async () => {
       const findOneMock = jest.fn();

@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const faker = require("faker");
-const User = require("../../src/models/user.model");
 const { userOne, userTwo } = require("./user.fixture");
 const { Cart } = require("../../src/models");
-const config = require("../../src/config/config")
+const config = require("../../src/config/config");
 
 const emptyCart = {
   _id: mongoose.Types.ObjectId(),

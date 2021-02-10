@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema(
   {
@@ -37,7 +37,7 @@ const productSchema = mongoose.Schema(
 /**
  * @typedef Product
  */
-const Product = mongoose.model('Product', productSchema);
+const Product = mongoose.model("Product", productSchema);
 
 module.exports.Product = Product;
 module.exports.productSchema = productSchema;

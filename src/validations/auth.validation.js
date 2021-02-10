@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const { password } = require('./custom.validation');
+const Joi = require("joi");
+const { password } = require("./custom.validation");
 
 /**
  * Check request *body* for fields (all are *required*)
@@ -17,7 +17,6 @@ const register = {
  */
 const login = {
 };
-
 
 module.exports = {
   register,

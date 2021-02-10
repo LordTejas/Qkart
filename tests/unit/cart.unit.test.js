@@ -1,12 +1,10 @@
 const httpStatus = require("http-status");
-const { User } = require("../../src/models");
-const { userOne, userTwo } = require("../fixtures/user.fixture");
+const { userOne } = require("../fixtures/user.fixture");
 const { Cart, Product } = require("../../src/models");
 const { cartService } = require("../../src/services");
 const {
   cartWithProductsUserOne,
   emptyCart,
-  cartWithProductsUserTwo,
 } = require("../fixtures/cart.fixture");
 const ApiError = require("../../src/utils/ApiError");
 const mockingoose = require("mockingoose").default;

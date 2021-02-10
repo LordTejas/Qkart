@@ -3,7 +3,7 @@ const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
 const { userService } = require("../services");
 
-// TODO: CRIO_TASK_MODULE_CART - Update function to process url with query params 
+// TODO: CRIO_TASK_MODULE_CART - Update function to process url with query params
 /**
  * Get user details
  *  - Use service layer to get User data

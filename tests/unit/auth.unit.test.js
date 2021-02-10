@@ -50,7 +50,7 @@ describe("Auth test", () => {
       };
 
       userService.getUserByEmail = jest.fn().mockReturnValue(null);
-      
+
       expect(
         authService.loginUserWithEmailAndPassword(userOne.email, "password1")
       ).rejects.toThrow(ApiError);

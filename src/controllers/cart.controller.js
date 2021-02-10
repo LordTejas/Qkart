@@ -1,5 +1,4 @@
 const httpStatus = require("http-status");
-const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
 const { cartService } = require("../services");
 
@@ -50,7 +49,7 @@ const addProductToCart = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(cart);
 });
 
-// TODO: CRIO_TASK_MODULE_CART - Implement updateProductInCart() 
+// TODO: CRIO_TASK_MODULE_CART - Implement updateProductInCart()
 /**
  * Update product quantity in cart
  * - If updated quantity > 0, 
