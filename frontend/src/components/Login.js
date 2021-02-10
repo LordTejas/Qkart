@@ -213,7 +213,7 @@ class Login extends React.Component {
    */
   
   login = async () => {
-    if (this.validateInput()) {
+    // if (this.validateInput()) {
       const response = await this.performAPICall();
       if (response) {
         this.persistLogin(
@@ -230,7 +230,7 @@ class Login extends React.Component {
         message.success("Logged in successfully");
         this.props.history.push("/products");
       }
-    }
+    // }
     
   };
 

@@ -69,9 +69,7 @@ export default class Cart extends React.Component {
         "Could not update cart. Check that the backend is running, reachable and returns valid JSON."
       );
       return false;
-    }
-
-    if (response.message) {
+    } else if (response.message) {
       message.error(response.message);
       return false;
     }
@@ -180,54 +178,29 @@ export default class Cart extends React.Component {
    *      "message": "Product doesn't exist"
    * }
    */
-  isProductInCart = async (productId) => {
-    for (const item of this.state.items) {
-      if (item.product._id === productId) {
-        return true;
-      }
-    }
-    return false;
-  };
-  pushToCart = async (productId, qty, fromAddToCartButton) => {
-    if (fromAddToCartButton) {
-      if (await this.isProductInCart(productId)) {
-        message.error(
-          "Item already added to cart. Use the cart sidebar to update quantity or remove item."
-        );
-        return;
-      }
-    }
+  postToCart = async (productId, qty) => {
     let response = {};
-    let method;
-    let productExists = false;
     let errored = false;
+    let statusCode;
 
     this.setState({
       loading: true,
     });
 
     try {
-      productExists = await this.isProductInCart(productId);
-
-      if (productExists === false) {
-        method = "POST";
-      } else {
-        method = "PUT";
-      }
-
-      response = await (
-        await fetch(`${config.endpoint}/cart`, {
-          method: method,
-          headers: {
-            Authorization: `Bearer ${this.props.token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            productId: productId,
-            quantity: qty,
-          }),
-        })
-      ).json();
+        response = await (
+          await fetch(`${config.endpoint}/cart`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${this.props.token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              productId: productId,
+              quantity: qty,
+            }),
+          })
+        ).json();
     } catch (e) {
       errored = true;
     }
@@ -236,7 +209,49 @@ export default class Cart extends React.Component {
       loading: false,
     });
 
-    if (this.validateResponse(errored, response)) {
+    if (this.validateResponse(errored, response, statusCode)) {
+      await this.refreshCart();
+    }
+  };
+
+  putToCart = async (productId, qty) => {
+    let response = {};
+    let errored = false;
+    let statusCode;
+
+    this.setState({
+      loading: true,
+    });
+
+    try {
+      let response_object = await fetch(`${config.endpoint}/cart`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${this.props.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productId: productId,
+          quantity: qty,
+        }),
+      });
+
+      statusCode = response_object.status;
+      if (statusCode !== 204) {
+        response = await response_object.json();
+      }
+    } catch (e) {
+      errored = true;
+    }
+
+    this.setState({
+      loading: false,
+    });
+
+    if (
+      statusCode === "204" ||
+      this.validateResponse(errored, response, statusCode)
+    ) {
       await this.refreshCart();
     }
   };
@@ -254,7 +269,7 @@ export default class Cart extends React.Component {
   refreshCart = async () => {
     const cart = await this.getCart();
 
-    if (cart && cart.cartItems) {
+    if (cart.cartItems) {
       this.setState({
         items: cart.cartItems.map((item) => ({
           ...item,
@@ -263,11 +278,6 @@ export default class Cart extends React.Component {
           ),
         })),
       });
-    }
-
-    if (this.props.checkout && !cart.cartItems.length) {
-      message.error("You must add items to cart first");
-      this.props.history.push("/products");
     }
   };
 
@@ -316,7 +326,7 @@ export default class Cart extends React.Component {
         max={10}
         defaultValue={item.quantity}
         onChange={(value) => {
-          this.pushToCart(item.product._id, value);
+          this.putToCart(item.product._id, value);
         }}
       />
     );
@@ -425,13 +435,11 @@ export default class Cart extends React.Component {
             type="primary"
             icon={<ShoppingCartOutlined />}
             onClick={() => {
-              if (this.state.items.length) {
-                message.info("Checkout functionality not implemented yet");
-
+              // if (this.state.items.length) {
                 this.props.history.push("/checkout");
-              } else {
-                message.error("You must add items to cart first");
-              }
+              // } else {
+                // message.error("You must add items to cart first");
+              // }
             }}
           >
             <strong> Checkout</strong>

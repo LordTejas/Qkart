@@ -8,7 +8,7 @@ const { userService } = require("../services");
  * Get user details
  *  - Use service layer to get User data
  * 
- *  - If no query param exist, return the whole user object
+ *  - If no query param "q" exist, return the whole user object fetched from Mongo
  *
  *  - If data exists for the provided "userId", return 200 status code and the object
  *  - If data doesn't exist, throw an error using `ApiError` class
@@ -30,19 +30,11 @@ const { userService } = require("../services");
  *     "__v": 0
  * }
  * 
- * Request url - <workspace-ip>:8082/v1/users/6010008e6c3477697e8eaba3?q=address
- * Response - 
- * {
- *   "address": "ADDRESS_NOT_SET"
- * }
- * 
+ *
  * Example response status codes:
  * HTTP 200 - If request successfully completes
  * HTTP 404 - If user entity not found in DB
  * 
- * 
- * @param {string} req.params.userId
- * @param {User} req.user
  * @returns {User | {address: String}}
  *
  */

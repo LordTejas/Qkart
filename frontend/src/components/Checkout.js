@@ -53,7 +53,7 @@ class Checkout extends React.Component {
       selectedAddressIndex: 0,
       newAddress: "",
       balance: 0,
-      loading: false
+      loading: false,
     };
   }
 
@@ -134,7 +134,7 @@ class Checkout extends React.Component {
     let errored = false;
 
     this.setState({
-      loading: true
+      loading: true,
     });
 
     try {
@@ -144,13 +144,13 @@ class Checkout extends React.Component {
     }
 
     this.setState({
-      loading: false
+      loading: false,
     });
 
     if (this.validateGetProductsResponse(errored, response)) {
       if (response) {
         this.setState({
-          products: response
+          products: response,
         });
       }
     }
@@ -225,32 +225,36 @@ class Checkout extends React.Component {
     let errored = false;
 
     this.setState({
-      loading: true
+      loading: true,
     });
 
     try {
-      response = await (await fetch(
-        `${config.endpoint}/users/${localStorage.getItem("userId")}?q=address`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
+      response = await (
+        await fetch(
+          `${config.endpoint}/users/${localStorage.getItem(
+            "userId"
+          )}?q=address`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
           }
-        }
-      )).json();
+        )
+      ).json();
     } catch (e) {
       errored = true;
     }
 
     this.setState({
-      loading: false
+      loading: false,
     });
 
     if (this.validateResponse(errored, response, "fetch addresses")) {
       if (response) {
         this.setState({
           address:
-            response.address !== "ADDRESS_NOT_SET" ? response.address : ""
+            response.address !== "ADDRESS_NOT_SET" ? response.address : "",
         });
       }
     }
@@ -289,29 +293,33 @@ class Checkout extends React.Component {
     let errored = false;
 
     this.setState({
-      loading: true
+      loading: true,
     });
 
     try {
-      response = await (await fetch(
-        `${config.endpoint}/users/${localStorage.getItem("userId")}?q=address`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            address: this.state.newAddress
-          })
-        }
-      )).json();
+      response = await (
+        await fetch(
+          `${config.endpoint}/users/${localStorage.getItem(
+            "userId"
+          )}?q=address`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              address: this.state.newAddress,
+            }),
+          }
+        )
+      ).json();
     } catch (e) {
       errored = true;
     }
 
     this.setState({
-      loading: false
+      loading: false,
     });
 
     if (this.validateResponse(errored, response, "add a new address")) {
@@ -319,7 +327,7 @@ class Checkout extends React.Component {
         message.success("Address added");
 
         this.setState({
-          newAddress: ""
+          newAddress: "",
         });
 
         await this.getAddresses();
@@ -327,7 +335,6 @@ class Checkout extends React.Component {
     }
   };
 
-  
   /**
    * Perform the API call to delete an address for the user
    *
@@ -359,31 +366,29 @@ class Checkout extends React.Component {
    *      "message": "Address to delete was not found"
    * }
    */
-  deleteAddress = async addressId => {
-    
+  deleteAddress = async (addressId) => {
     let response = {};
     let errored = false;
 
     this.setState({
-      loading: true
+      loading: true,
     });
 
     try {
-      response = await (await fetch(
-        `${config.endpoint}/user/addresses/${addressId}`,
-        {
+      response = await (
+        await fetch(`${config.endpoint}/user/addresses/${addressId}`, {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-          }
-        }
-      )).json();
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+      ).json();
     } catch (e) {
       errored = true;
     }
 
     this.setState({
-      loading: false
+      loading: false,
     });
 
     if (this.validateResponse(errored, response, "delete address")) {
@@ -393,7 +398,6 @@ class Checkout extends React.Component {
         await this.getAddresses();
       }
     }
-    
   };
 
   /**
@@ -427,10 +431,10 @@ class Checkout extends React.Component {
    */
   checkout = async () => {
     let response = {};
-    // let errored = false;
+    let errored = false;
 
     this.setState({
-      loading: true
+      loading: true,
     });
 
     try {
@@ -438,37 +442,36 @@ class Checkout extends React.Component {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       });
     } catch (e) {
-      // errored = true;
+      errored = true;
       console.log(e);
     }
 
     this.setState({
-      loading: false
+      loading: false,
     });
 
-    if (response.status === 204) {
-      if (response) {
-        
-        
-        message.success("Order placed");
+    let data;
+    if (response.status !== 204) {
+      data = await response.json();
+    }
+    if (response.status === 204 || this.validateResponse(errored, data)) {
+      message.success("Order placed");
 
-        localStorage.setItem(
-          "balance",
-          parseInt(localStorage.getItem("balance")) -
-            this.cartRef.current.calculateTotal()
-        );
+      console.log(this.cartRef.current.calculateTotal());
+      localStorage.setItem(
+        "balance",
+        parseInt(localStorage.getItem("balance")) -
+          this.cartRef.current.calculateTotal()
+      );
 
-        this.props.history.push("/thanks");
-        
-      }
+      this.props.history.push("/thanks");
     }
   };
 
-  
   /**
    * Function that is called when the user clicks on the place order button
    * -    If the user's wallet balance is less than the total cost of the user's cart, then display an appropriate error message
@@ -476,18 +479,9 @@ class Checkout extends React.Component {
    * -    Else call the checkout() method to proceed with placing and order
    */
   order = () => {
-    if (this.state.balance < this.cartRef.current.calculateTotal()) {
-      message.error(
-        "You do not have enough balance in your wallet for this purchase"
-      );
-    } else if (!this.state.address.length === 0) {
-      message.error("Please select an address or add a new address to proceed");
-    } else {
-      this.checkout();
-    }
+    this.checkout();
   };
 
-  
   /**
    * Function that runs when component has loaded
    * This is the function that is called when the user lands on the Checkout page
@@ -496,19 +490,17 @@ class Checkout extends React.Component {
    * Else, show an error message indicating that the user must be logged in first and redirect the user to the home page
    */
   async componentDidMount() {
-    
     if (localStorage.getItem("username") && localStorage.getItem("token")) {
       await this.getProducts();
       await this.getAddresses();
 
       this.setState({
-        balance: localStorage.getItem("balance")
+        balance: localStorage.getItem("balance"),
       });
     } else {
-      message.error("You must be logged in to do that.");
+      message.error("You must be logged in to visit the checkout page");
       this.props.history.push("/");
     }
-    
   }
 
   /**
@@ -525,7 +517,7 @@ class Checkout extends React.Component {
     const radioStyle = {
       display: "block",
       height: "30px",
-      lineHeight: "30px"
+      lineHeight: "30px",
     };
 
     return (
@@ -536,20 +528,16 @@ class Checkout extends React.Component {
         {/* Display Checkout page content */}
         <div className="checkout-container">
           <Row>
-
             {/* Display checkout instructions */}
 
             <Col xs={{ span: 24, order: 2 }} md={{ span: 18, order: 1 }}>
-
               <div className="checkout-shipping">
                 <h1 style={{ marginBottom: "-10px" }}>Shipping</h1>
 
                 <hr></hr>
                 <br></br>
 
-                <p>
-                  Shipping Address
-                </p>
+                <p>Shipping Address</p>
 
                 {/* Display the "Shipping" sectino */}
                 <div className="address-section">
@@ -596,11 +584,11 @@ class Checkout extends React.Component {
                     //               {/* Display button to delete address from user's list */}
                     //               {/* <Button
                     //                 type="primary"
-                    
+
                     //                 onClick={async () => {
                     //                   await this.deleteAddress(address._id);
                     //                 }}
-                    
+
                     //               >
                     //                 Delete
                     //               </Button> */}
@@ -682,14 +670,11 @@ class Checkout extends React.Component {
 
             {/* Display the cart */}
 
-
-
             <Col
               xs={{ span: 24, order: 1 }}
               md={{ span: 6, order: 2 }}
               className="checkout-cart"
             >
-
               <div>
                 {this.state.products.length && (
                   <Cart

@@ -196,7 +196,7 @@ class Register extends React.Component {
    */
   
   register = async () => {
-    if (this.validateInput()) {
+    // if (this.validateInput()) {
       const response = await this.performAPICall();
       if (response) {
         this.setState({
@@ -207,7 +207,7 @@ class Register extends React.Component {
         message.success("Registered successfully");
         this.props.history.push("/login");
       }
-    }
+    // }
     
   };
 
