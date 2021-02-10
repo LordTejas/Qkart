@@ -53,7 +53,9 @@ describe("Cart test", () => {
       mockingoose(Cart).toReturn(cartWithProductsUserTwo, "findOne");
 
       const hasSetNonDefaultAddressMock = jest.fn();
-      userTwo.hasSetNonDefaultAddress = hasSetNonDefaultAddressMock.mockReturnValue(false);
+      userTwo.hasSetNonDefaultAddress = hasSetNonDefaultAddressMock.mockReturnValue(
+        false
+      );
 
       const res = cartService.checkout(userTwo);
 
@@ -79,7 +81,9 @@ describe("Cart test", () => {
       userOneFinal.save = jest.fn();
 
       const hasSetNonDefaultAddressMock = jest.fn();
-      userOneFinal.hasSetNonDefaultAddress = hasSetNonDefaultAddressMock.mockReturnValue(true);
+      userOneFinal.hasSetNonDefaultAddress = hasSetNonDefaultAddressMock.mockReturnValue(
+        true
+      );
 
       let cartSaveMock = (...args) => {
         expect(args[0].cartItems.length).toEqual(0);

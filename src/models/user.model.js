@@ -56,7 +56,7 @@ userSchema.methods.isPasswordMatch = async function (password) {
  * Check if user have set an address other than the default address
  * - should return true if user has set an address other than default address
  * - should return false if user's address is the default address
- * 
+ *
  * @returns {Promise<boolean>}
  */
 userSchema.methods.hasSetNonDefaultAddress = async function () {

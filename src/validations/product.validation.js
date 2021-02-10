@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const { objectId } = require('./custom.validation');
+const Joi = require("joi");
+const { objectId } = require("./custom.validation");
 
 const getProduct = {
   params: Joi.object().keys({
@@ -7,7 +7,6 @@ const getProduct = {
   }),
 };
 
-
 module.exports = {
-  getProduct
+  getProduct,
 };
