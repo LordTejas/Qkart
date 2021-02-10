@@ -18,11 +18,6 @@ const { productService } = require('../services');
  *      "__v": 0
  * }
  * 
- * HTTP 404 
- * HTTP 500
- * @param {string} req.params.productId
- * @param {string} req.body.quantity
- * @param {User} req.user
  * 
 */
 const getProductById = catchAsync(async (req, res) => {
@@ -59,9 +54,6 @@ const getProductById = catchAsync(async (req, res) => {
  *      "__v": 0
  *  }
  *]
- * 
- * HTTP 404 
- * HTTP 500
  * 
 */
 const getProducts = catchAsync(async (req, res) => {
