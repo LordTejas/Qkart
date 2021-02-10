@@ -23,7 +23,7 @@ router.put(
 );
 
 router.put(
-  "/checkout", 
+  "/checkout",
   cartController.checkout
 );
 

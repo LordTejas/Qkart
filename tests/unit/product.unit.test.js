@@ -27,7 +27,7 @@ describe("Product test", () => {
       mockingoose(Product).toReturn(productOne, "findOne");
 
       let productResponse = await productService.getProductById("1111");
-      
+
       expect(JSON.stringify(productResponse)).toEqual(
         JSON.stringify(productOne)
       );

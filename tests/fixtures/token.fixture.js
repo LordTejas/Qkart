@@ -4,8 +4,7 @@ const tokenService = require("../../src/services/token.service");
 const { userOne, userTwo } = require("./user.fixture");
 
 const accessTokenExpires =
-    Math.floor(Date.now() / 1000) + config.jwt.accessExpirationMinutes * 60;
-
+  Math.floor(Date.now() / 1000) + config.jwt.accessExpirationMinutes * 60;
 
 const userOneAccessToken = tokenService.generateToken(
   userOne._id,

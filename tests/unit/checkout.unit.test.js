@@ -59,7 +59,9 @@ describe("Cart test", () => {
 
       // create a mock function for User model's hasSetNonDefaultAddress() instance method
       const hasSetNonDefaultAddressMock = jest.fn();
-      userTwo.hasSetNonDefaultAddress = hasSetNonDefaultAddressMock.mockReturnValue(false);
+      userTwo.hasSetNonDefaultAddress = hasSetNonDefaultAddressMock.mockReturnValue(
+        false
+      );
 
       const res = cartService.checkout(userTwo);
 
@@ -94,7 +96,9 @@ describe("Cart test", () => {
 
       // create a mock function for User model's hasSetNonDefaultAddress() instance method
       const hasSetNonDefaultAddressMock = jest.fn();
-      userOneFinal.hasSetNonDefaultAddress = hasSetNonDefaultAddressMock.mockReturnValue(true);
+      userOneFinal.hasSetNonDefaultAddress = hasSetNonDefaultAddressMock.mockReturnValue(
+        true
+      );
 
       // define a mock object for `cart.save()` call - assert saved Cart object
       let cartSaveMock = (...args) => {

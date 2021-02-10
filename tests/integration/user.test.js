@@ -1,5 +1,4 @@
 const request = require("supertest");
-const faker = require("faker");
 const httpStatus = require("http-status");
 const app = require("../../src/app");
 const setupTestDB = require("../utils/setupTestDB");
@@ -61,7 +60,7 @@ describe("User routes", () => {
         expect(res.status).toEqual(httpStatus.FORBIDDEN);
       });
     });
-    
+
     describe("Get Shipping address", () => {
       it("should return 200 and the adresss if data is ok", async () => {
         await insertUsers([userOne]);
