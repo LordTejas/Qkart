@@ -8,6 +8,8 @@ const { objectId } = require("./custom.validation");
  * - valid Mongo id -> Use the helper function in src/validations/custom.validation.js
  */
 const getUser = {
+  params: Joi.object().keys({
+  }),
 };
 
 const setAddress = {

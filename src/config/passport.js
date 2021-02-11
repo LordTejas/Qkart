@@ -1,13 +1,12 @@
-const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
-const config = require('./config');
-const { tokenTypes } = require('./tokens');
-const { User } = require('../models');
-
+const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
+const config = require("./config");
+const { tokenTypes } = require("./tokens");
+const { User } = require("../models");
 
 /**
  * These config options are required
- * Option 1: jwt secret
- * Option 2: mechanism to fetch jwt token from request
+ * Option 1: jwt secret environment variable set in ".env"
+ * Option 2: mechanism to fetch jwt token from request Authentication header with the "bearer" auth scheme
  */
 const jwtOptions = {
   secretOrKey: config.jwt.secret,
@@ -20,6 +19,9 @@ const jwtOptions = {
  * - If there's a valid user, return the user in the callback function
  * - If user not found, return `false` in the user field in the callback function
  * - If the function errs, return the error in the callback function
+ * 
+ * @param payload - the payload the token was generated with
+ * @param done - callback function
  */
 const jwtVerify = async (payload, done) => {
 };
