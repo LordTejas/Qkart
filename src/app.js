@@ -29,6 +29,7 @@ app.use(compression());
 app.use(cors());
 app.options("*", cors());
 
+// TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Initialize passport and add "jwt" authentication strategy
 
 // v1 api routes
 app.use("/v1", routes);
