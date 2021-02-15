@@ -22,6 +22,7 @@ const generateToken = (userId, expires, type, secret = config.jwt.secret) => {
 /**
  * Generate auth token
  * - Generate jwt token
+ * - Token type should be "ACCESS"
  * - Return token and expiry date in required format
  *
  * @param {User} user
