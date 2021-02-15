@@ -28,8 +28,9 @@ const jwtOptions = {
 const jwtVerify = async (payload, done) => {
 };
 
-const jwtStrategy = new JwtStrategy(jwtOptions, jwtVerify);
+// TODO: CRIO_TASK_MODULE_AUTH - Uncomment below lines of code once the "jwtVerify" and "jwtOptions" are implemented
+// const jwtStrategy = new JwtStrategy(jwtOptions, jwtVerify);
 
-module.exports = {
-  jwtStrategy,
-};
+// module.exports = {
+//   jwtStrategy,
+// };
