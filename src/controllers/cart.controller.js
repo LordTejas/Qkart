@@ -27,6 +27,8 @@ const { cartService } = require("../services");
  *  ],
  *  "paymentOption": "PAYMENT_OPTION_DEFAULT",
  *  "__v": 33
+ * }
+ * 
  *
  */
 const getCart = catchAsync(async (req, res) => {
