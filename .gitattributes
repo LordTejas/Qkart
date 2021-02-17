@@ -54,6 +54,9 @@ src/validations/product.validation.js
 # tests/config/
 tests/config/config.js merge=copy-merge
 
+# tests/fixtures/
+tests/fixtures/* merge=copy-merge
+
 # tests/integration/
 tests/integration/* merge=copy-merge
 
