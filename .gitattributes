@@ -14,7 +14,7 @@ data/export_qkart_products.json merge=copy-merge
 data/export_qkart_users.json merge=copy-merge
 
 # frontend/
-/frontend/** merge=copy-merge
+frontend/** merge=copy-merge
 
 # src/config/
 src/config/config.js merge=copy-merge
