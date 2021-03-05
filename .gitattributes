@@ -14,51 +14,59 @@ data/export_qkart_products.json merge=copy-merge
 data/export_qkart_users.json merge=copy-merge
 
 # frontend/
-frontend/** merge=copy-merge
+/frontend/** merge=copy-merge
 
 # src/config/
 src/config/config.js merge=copy-merge
-src/config/logger.js
-src/config/morgan.js
-src/config/tokens.js
+src/config/logger.js merge=copy-merge
+src/config/morgan.js merge=copy-merge
+src/config/tokens.js merge=copy-merge
 
 # src/controllers/
 src/controllers/index.js merge=copy-merge
-src/controllers/product.controller.js
+src/controllers/product.controller.js merge=copy-merge
 
 # src/middlewares
-src/middlewares/error.js
-src/middlewares/validate.js
+src/middlewares/error.js merge=copy-merge
+src/middlewares/validate.js merge=copy-merge
 
 # src/models/
 src/models/plugins/*
 src/models/index.js merge=copy-merge
-src/models/product.model.js
+src/models/product.model.js merge=copy-merge
 
 # src/routes/
-src/routes/v1/product.route.js
+src/routes/v1/product.route.js merge=copy-merge
 
 # src/services/
 src/services/index.js merge=copy-merge
-src/services/product.service.js
+src/services/product.service.js merge=copy-merge
 
 # src/utils/
-src/utils/* merge=copy-merge
+src/utils/ApiError.js  merge=copy-merge
+src/utils/catchAsync.js merge=copy-merge
+src/utils/pick.js merge=copy-merge
 
 # src/validations/
 src/validations/custom.validation.js merge=copy-merge
 src/validations/index.js merge=copy-merge
-src/validations/cart.validation.js
-src/validations/product.validation.js
+src/validations/cart.validation.js merge=copy-merge
+src/validations/product.validation.js merge=copy-merge
 
 # tests/config/
 tests/config/config.js merge=copy-merge
 
 # tests/fixtures/
-tests/fixtures/* merge=copy-merge
+tests/fixtures/cart.fixture.js merge=copy-merge
+tests/fixtures/user.fixture.js merge=copy-merge
+tests/fixtures/token.fixture.js merge=copy-merge
+tests/fixtures/product.fixture.js merge=copy-merge
 
 # tests/integration/
-tests/integration/* merge=copy-merge
+tests/integration/product.test.js merge=copy-merge
+tests/integration/user.test.js merge=copy-merge
+tests/integration/auth.test.js merge=copy-merge
+tests/integration/cart.test.js merge=copy-merge
 
 # tests/unit/
 tests/unit/auth.unit.test.js merge=copy-merge
