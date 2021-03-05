@@ -7,9 +7,10 @@ const { userService } = require("../services");
  * Get user details
  *  - Use service layer to get User data
  * 
- *  - If no query param "q" exist, return the whole user object fetched from Mongo
  *  - If query param, "q" equals "address", return only the address field of the user
- *
+ *  - Else,
+ *  - Return the whole user object fetched from Mongo
+
  *  - If data exists for the provided "userId", return 200 status code and the object
  *  - If data doesn't exist, throw an error using `ApiError` class
  *    - Status code should be "404 NOT FOUND"
