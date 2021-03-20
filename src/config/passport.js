@@ -19,11 +19,15 @@ const jwtOptions = {
  * - If there's a valid user, return the user in the callback function
  * - If user not found, return `false` in the user field in the callback function
  * - If the function errs, return the error in the callback function
- * 
+ *
  * @param payload - the payload the token was generated with
  * @param done - callback function
  */
 const jwtVerify = async (payload, done) => {
 };
 
+const jwtStrategy = new JwtStrategy(jwtOptions, jwtVerify);
 
+module.exports = {
+  jwtStrategy,
+};
