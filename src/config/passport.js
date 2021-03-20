@@ -21,7 +21,7 @@ const jwtOptions = {
  * - If there's a valid user, return the user in the callback function
  * - If user not found, return `false` in the user field in the callback function
  * - If the function errs, return the error in the callback function
- * 
+ *
  * @param payload - the payload the token was generated with
  * @param done - callback function
  */
@@ -29,8 +29,8 @@ const jwtVerify = async (payload, done) => {
 };
 
 // TODO: CRIO_TASK_MODULE_AUTH - Uncomment below lines of code once the "jwtVerify" and "jwtOptions" are implemented
-// const jwtStrategy = new JwtStrategy(jwtOptions, jwtVerify);
+const jwtStrategy = new JwtStrategy(jwtOptions, jwtVerify);
 
-// module.exports = {
-//   jwtStrategy,
-// };
+module.exports = {
+  jwtStrategy,
+};
