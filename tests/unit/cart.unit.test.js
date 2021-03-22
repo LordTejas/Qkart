@@ -65,6 +65,9 @@ describe("Cart test", () => {
     });
 
     it("should throw 400 error if cart is empty", async () => {
+      // Mock Product.findOne() method to return predefined product
+      mockingoose(Product).toReturn(productOne, "findOne");
+      
       // Mock Cart.findOne() method to return null
       mockingoose(Cart).toReturn(null, "findOne");
 
