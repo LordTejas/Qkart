@@ -64,10 +64,10 @@ describe("Cart test", () => {
       expect(addedProduct[0].quantity).toEqual(qty);
     });
 
-    it("should throw 400 error if cart is empty", async () => {
+    it("should throw 500 error if cart is empty", async () => {
       // Mock Product.findOne() method to return predefined product
       mockingoose(Product).toReturn(productOne, "findOne");
-      
+
       // Mock Cart.findOne() method to return null
       mockingoose(Cart).toReturn(null, "findOne");
 
