@@ -7,6 +7,5 @@ const router = express.Router();
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement a route definition for `/v1/users/:userId`
 
-// Supports updating address only currently
 
 module.exports = router;
