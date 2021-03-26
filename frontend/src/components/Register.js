@@ -28,12 +28,10 @@ class Register extends React.Component {
       username: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
     };
   }
 
-  
-  
   /**
    * Validate the input values so that any bad or illegal values are not passed to the backend.
    *
@@ -50,7 +48,6 @@ class Register extends React.Component {
    * -    Check that confirmPassword field has the same value as password field
    */
   validateInput = () => {
-    
     if (!this.state.username) {
       message.error("Username is a required field");
       return false;
@@ -80,10 +77,8 @@ class Register extends React.Component {
       return false;
     }
     return true;
-    
   };
 
-  
   /**
    * Check the response of the API call to be valid and handle any failures along the way
    *
@@ -101,7 +96,6 @@ class Register extends React.Component {
    * When there is no error and API call is successful, return true.
    */
   validateResponse = (errored, response) => {
-    
     if (errored || (!response.tokens && !response.message)) {
       message.error(
         "Something went wrong. Check that the backend is running, reachable and returns valid JSON."
@@ -113,10 +107,8 @@ class Register extends React.Component {
       return false;
     }
     return true;
-    
   };
 
-  
   /**
    * Perform the API call over the network and return the response
    *
@@ -146,37 +138,36 @@ class Register extends React.Component {
    * }
    */
   performAPICall = async () => {
-    
     let response = {};
     let errored = false;
     this.setState({
-      loading: true
+      loading: true,
     });
     try {
-      response = await (await fetch(`${config.endpoint}/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: this.state.username,
-          email: this.state.email,
-          password: this.state.password
+      response = await (
+        await fetch(`${config.endpoint}/auth/register`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+          }),
         })
-      })).json();
+      ).json();
     } catch (e) {
       errored = true;
     }
     this.setState({
-      loading: false
+      loading: false,
     });
     if (this.validateResponse(errored, response)) {
       return response;
     }
-    
   };
 
-  
   /**
    * Definition for register handler
    * This is the function that is called when the user clicks on the register button or submits the register form
@@ -187,28 +178,26 @@ class Register extends React.Component {
    *      -   Display a success message
    *      -   Redirect the user to the "/login" page
    */
-  
-  
+
   /**
    * Definition for register handler
    * This is the function that is called when the user clicks on the register button or submits the register form
    *    - Display an alert message, "Register logic not implemented yet"
    */
-  
+
   register = async () => {
     // if (this.validateInput()) {
-      const response = await this.performAPICall();
-      if (response) {
-        this.setState({
-          username: "",
-          password: "",
-          confirmPassword: ""
-        });
-        message.success("Registered successfully");
-        this.props.history.push("/login");
-      }
+    const response = await this.performAPICall();
+    if (response) {
+      this.setState({
+        username: "",
+        password: "",
+        confirmPassword: "",
+      });
+      message.success("Registered successfully");
+      this.props.history.push("/login");
+    }
     // }
-    
   };
 
   /**
@@ -231,9 +220,9 @@ class Register extends React.Component {
               className="input-field"
               prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder="Username"
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  username: e.target.value
+                  username: e.target.value,
                 });
               }}
             />
@@ -241,9 +230,9 @@ class Register extends React.Component {
               className="input-field"
               prefix={<MailOutlined className="site-form-item-icon" />}
               placeholder="Email"
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  email: e.target.value
+                  email: e.target.value,
                 });
               }}
             />
@@ -252,13 +241,10 @@ class Register extends React.Component {
             <Input.Password
               className="input-field"
               prefix={<LockOutlined className="site-form-item-icon" />}
-              
-              
               placeholder="Password"
-              
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  password: e.target.value
+                  password: e.target.value,
                 });
               }}
             />
@@ -266,14 +252,11 @@ class Register extends React.Component {
             {/* Antd component which renders a formatted <input type="password"> field */}
             <Input.Password
               className="input-field"
-              
-              
               prefix={<LockOutlined className="site-form-item-icon" />}
-              
               placeholder="Confirm Password"
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  confirmPassword: e.target.value
+                  confirmPassword: e.target.value,
                 });
               }}
             />
@@ -282,10 +265,7 @@ class Register extends React.Component {
             <Button
               loading={this.state.loading}
               type="primary"
-              
-              
               onClick={this.register}
-              
             >
               Register
             </Button>
@@ -299,9 +279,6 @@ class Register extends React.Component {
   }
 }
 
-
 // export default Register;
 
-
 export default withRouter(Register);
-

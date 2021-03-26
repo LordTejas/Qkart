@@ -30,7 +30,8 @@ class Thanks extends React.Component {
           </div>
 
           <div className="thanks-line">
-            Wallet balance: <br></br>₹{localStorage.getItem("balance")}{" "} available
+            Wallet balance: <br></br>₹{localStorage.getItem("balance")}{" "}
+            available
           </div>
 
           <Link to="/products" className="thanks-line">
