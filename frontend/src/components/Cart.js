@@ -188,19 +188,19 @@ export default class Cart extends React.Component {
     });
 
     try {
-        response = await (
-          await fetch(`${config.endpoint}/cart`, {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${this.props.token}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              productId: productId,
-              quantity: qty,
-            }),
-          })
-        ).json();
+      response = await (
+        await fetch(`${config.endpoint}/cart`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${this.props.token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            productId: productId,
+            quantity: qty,
+          }),
+        })
+      ).json();
     } catch (e) {
       errored = true;
     }
@@ -436,9 +436,9 @@ export default class Cart extends React.Component {
             icon={<ShoppingCartOutlined />}
             onClick={() => {
               // if (this.state.items.length) {
-                this.props.history.push("/checkout");
+              this.props.history.push("/checkout");
               // } else {
-                // message.error("You must add items to cart first");
+              // message.error("You must add items to cart first");
               // }
             }}
           >

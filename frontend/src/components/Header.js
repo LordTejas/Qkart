@@ -33,11 +33,7 @@ export default class Header extends React.Component {
           <img src="icon.svg" alt="QKart-icon"></img>
         </div>
 
-
-
-
         {this.props.children}
-
 
         {/* Display links based on if the user's logged in or not */}
         <div className="header-action">

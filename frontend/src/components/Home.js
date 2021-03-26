@@ -17,27 +17,32 @@ export default function App() {
 
           <div className="home-buttons">
             <Link to="/register">
-              <Button id="register-button" className="btn-block" type="primary" block={true}>
+              <Button
+                id="register-button"
+                className="btn-block"
+                type="primary"
+                block={true}
+              >
                 Register
               </Button>
             </Link>
 
-
-
             <Link to="/login">
-              <Button id="login-button" className="btn-block" type="primary" block={true}>
+              <Button
+                id="login-button"
+                className="btn-block"
+                type="primary"
+                block={true}
+              >
                 Login
               </Button>
             </Link>
-
-            
 
             <Link to="/products">
               <Button className="btn-block" type="primary" block={true}>
                 Browse Products
               </Button>
             </Link>
-
           </div>
         </div>
       </div>

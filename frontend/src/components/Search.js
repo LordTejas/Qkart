@@ -43,15 +43,15 @@ import "./Search.css";
 class Search extends React.Component {
   constructor() {
     super();
-    
+
     this.cartRef = React.createRef();
-    
+
     this.debounceTimeout = 0;
     this.products = [];
     this.state = {
       loading: false,
       loggedIn: false,
-      filteredProducts: []
+      filteredProducts: [],
     };
   }
 
@@ -135,7 +135,7 @@ class Search extends React.Component {
     let errored = false;
 
     this.setState({
-      loading: true
+      loading: true,
     });
 
     try {
@@ -145,7 +145,7 @@ class Search extends React.Component {
     }
 
     this.setState({
-      loading: false
+      loading: false,
     });
 
     if (this.validateResponse(errored, response)) {
@@ -153,7 +153,6 @@ class Search extends React.Component {
     }
   };
 
-  
   /**
    * Definition for debounce handler
    * This is the function that is called whenever the user types or changes the text in the searchbar field
@@ -167,8 +166,7 @@ class Search extends React.Component {
    * -    If the debounceTimeout class property is already set, use clearTimeout to remove the timer from memory: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout
    * -    Call setTimeout to start a new timer that calls below defined search() method after 300ms and store the return value in the debounceTimeout class property: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
    */
-  debounceSearch = event => {
-    
+  debounceSearch = (event) => {
     const value = event.target.value;
 
     if (this.debounceTimeout) {
@@ -178,10 +176,8 @@ class Search extends React.Component {
     this.debounceTimeout = setTimeout(() => {
       this.search(value);
     }, 300);
-    
   };
 
-  
   /**
    * Definition for search handler
    * This is the function that is called when the user clicks on the search button or the debounce timer is executed
@@ -193,19 +189,16 @@ class Search extends React.Component {
    * -    The search filtering should be done on the name and category fields of the product
    * -    The search filtering should not take in to account the letter case of the search text or name/category fields
    */
-  search = text => {
-    
+  search = (text) => {
     this.setState({
       filteredProducts: this.products.filter(
-        product =>
+        (product) =>
           product.name.toUpperCase().includes(text.toUpperCase()) ||
           product.category.toUpperCase().includes(text.toUpperCase())
-      )
+      ),
     });
-    
   };
 
-  
   /**
    * Function to fetch list of products from backend and update state variable
    * -    Call the previously defined performAPICall() function asynchronously and capture the returned value in a variable
@@ -214,38 +207,32 @@ class Search extends React.Component {
    *      -   Update `filteredProducts` state variable with a clone of `products`
    */
   getProducts = async () => {
-    
     const response = await this.performAPICall();
 
     if (response) {
       this.products = response;
       this.setState({
-        filteredProducts: this.products.slice()
+        filteredProducts: this.products.slice(),
       });
     }
-    
   };
 
-  
   /**
    * Function that runs when component has loaded
    * This is the function that is called when the user lands on the Search/Products page
    * This is a good place to check and set a state flag for whether the user is logged in so we can use it for conditional rendering later on in render()
    */
-  
+
   componentDidMount() {
     this.getProducts();
 
     if (localStorage.getItem("email") && localStorage.getItem("token")) {
       this.setState({
-        loggedIn: true
+        loggedIn: true,
       });
     }
   }
-  
 
-  
-  
   /**
    * Creates the responsive view for a product item
    *
@@ -253,19 +240,17 @@ class Search extends React.Component {
    * @returns {JSX}
    *    HTML and JSX to be rendered
    */
-  getProductElement = product => {
+  getProductElement = (product) => {
     return (
       <Col xs={24} sm={12} xl={6} key={product._id}>
         <Product
           product={product}
           addToCart={() => {
             if (this.state.loggedIn) {
-              this.cartRef.current.postToCart(product._id, 1, true);              
-            }
-            else {
+              this.cartRef.current.postToCart(product._id, 1, true);
+            } else {
               this.props.history.push("/login");
             }
-            
           }}
         />
       </Col>
@@ -285,16 +270,12 @@ class Search extends React.Component {
       <>
         {/* Display Header with Search bar */}
         <Header history={this.props.history}>
-
-
-
           <Input.Search
             placeholder="Search"
             onSearch={this.search}
             onChange={this.debounceSearch}
             enterButton={true}
           />
-
         </Header>
 
         {/* Use Antd Row/Col components to display products and cart as columns in the same row*/}
@@ -302,15 +283,13 @@ class Search extends React.Component {
           {/* Display products */}
           <Col
             xs={{ span: 24 }}
-            
             md={{ span: this.state.loggedIn && this.products.length ? 18 : 24 }}
-            
           >
             <div className="search-container ">
               {/* Display each product item wrapped in a Col component */}
               <Row>
                 {this.products.length !== 0 ? (
-                  this.state.filteredProducts.map(product =>
+                  this.state.filteredProducts.map((product) =>
                     this.getProductElement(product)
                   )
                 ) : this.state.loading ? (
@@ -325,27 +304,17 @@ class Search extends React.Component {
           {/* Display cart */}
 
           {this.state.loggedIn && this.products.length && (
-            <Col
-              xs={{ span: 24 }}
-              
-              md={{ span: 6 }}
-              
-              className="search-cart"
-            >
+            <Col xs={{ span: 24 }} md={{ span: 6 }} className="search-cart">
               <div>
-
-
                 <Cart
                   ref={this.cartRef}
                   products={this.products}
                   history={this.props.history}
                   token={localStorage.getItem("token")}
                 />
-
               </div>
             </Col>
           )}
-
         </Row>
 
         {/* Display the footer */}
