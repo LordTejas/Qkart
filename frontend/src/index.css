@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -29,7 +30,6 @@ hr {
   border-top: 1px solid rgb(233, 233, 233);
 }
 
-
 .container {
   width: 500px;
   margin: 0 auto;
@@ -38,11 +38,7 @@ hr {
   text-align: center;
   border-radius: 4px;
 
-
-
   border: 1px solid #d1d5da;
-
-
 }
 
 .container-fullpage {

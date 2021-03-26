@@ -9,7 +9,7 @@ const { cartService } = require("../services");
  * HTTP 200 OK
  * {
  *  "_id": "5f82eebd2b11f6979231653f",
- *  "email": "rohinrohin@gmail.com",
+ *  "email": "crio-user@gmail.com",
  *  "cartItems": [
  *      {
  *          "_id": "5f8feede75b0cc037b1bce9d",

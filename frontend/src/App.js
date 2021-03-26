@@ -10,13 +10,12 @@ import Register from "./components/Register";
 
 import Search from "./components/Search";
 
-
 import Thanks from "./components/Thanks";
 
 import ipConfig from "./ipConfig.json";
 
 export const config = {
-  endpoint: `http://${ipConfig.workspaceIp}:8082/v1`
+  endpoint: `https://${ipConfig.workspaceIp}:8082/v1`,
 };
 
 export default function App(props) {
@@ -28,12 +27,7 @@ export default function App(props) {
 
   return (
     <div className="App">
-
-
       <Switch>
-
-
-
         <Route path="/register">
           <Register />
         </Route>
@@ -41,11 +35,9 @@ export default function App(props) {
           <Login />
         </Route>
 
-
         <Route path="/products">
           <Search />
         </Route>
-
 
         <Route path="/checkout">
           <Checkout />
@@ -55,16 +47,10 @@ export default function App(props) {
           <Thanks />
         </Route>
 
-
-
-
         <Route path="/">
           <Home />
         </Route>
-
-
       </Switch>
-
     </div>
   );
 }

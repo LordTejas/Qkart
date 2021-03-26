@@ -24,12 +24,10 @@ class Login extends React.Component {
     this.state = {
       loading: false,
       email: "",
-      password: ""
+      password: "",
     };
   }
 
-  
-  
   /**
    * Validate the input values so that any bad or illegal values are not passed to the backend.
    *
@@ -41,7 +39,6 @@ class Login extends React.Component {
    * -    Check that password field is not an empty value
    */
   validateInput = () => {
-    
     if (!this.state.email) {
       message.error("Email is a required field");
       return false;
@@ -51,10 +48,8 @@ class Login extends React.Component {
       return false;
     }
     return true;
-    
   };
 
-  
   /**
    * Check the response of the API call to be valid and handle any failures along the way
    *
@@ -72,7 +67,6 @@ class Login extends React.Component {
    * When there is no error and API call is successful, return true.
    */
   validateResponse = (errored, response) => {
-    
     if (errored || (!response.tokens && !response.message)) {
       message.error(
         "Something went wrong. Check that the backend is running, reachable and returns valid JSON."
@@ -84,10 +78,8 @@ class Login extends React.Component {
       return false;
     }
     return true;
-    
   };
 
-  
   /**
    * Perform the API call over the network and return the response
    *
@@ -133,36 +125,35 @@ class Login extends React.Component {
    * }
    */
   performAPICall = async () => {
-    
     let response = {};
     let errored = false;
     this.setState({
-      loading: true
+      loading: true,
     });
     try {
-      response = await (await fetch(`${config.endpoint}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password
+      response = await (
+        await fetch(`${config.endpoint}/auth/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: this.state.email,
+            password: this.state.password,
+          }),
         })
-      })).json();
+      ).json();
     } catch (e) {
       errored = true;
     }
     this.setState({
-      loading: false
+      loading: false,
     });
     if (this.validateResponse(errored, response)) {
       return response;
     }
-    
   };
 
-  
   /**
    * Store the login information so that it can be used to identify the user in subsequent API calls
    *
@@ -181,16 +172,13 @@ class Login extends React.Component {
    * -    `userId` field in localStorage can be used to store the user ID
    */
   persistLogin = (token, email, balance, name, userId) => {
-    
     localStorage.setItem("token", token);
     localStorage.setItem("email", email);
     localStorage.setItem("balance", balance);
     localStorage.setItem("username", name);
     localStorage.setItem("userId", userId);
-    
   };
 
-  
   /**
    * Definition for login handler
    * This is the function that is called when the user clicks on the login button or submits the login form
@@ -202,36 +190,32 @@ class Login extends React.Component {
    *      -   Display a success message
    *      -   Redirect the user to the "/products" page
    */
-  
 
-  
-  
   /**
    * Definition for login handler
    * This is the function that is called when the user clicks on the login button or submits the login form
    *    - Display a message, "Login logic not implemented yet"
    */
-  
+
   login = async () => {
     // if (this.validateInput()) {
-      const response = await this.performAPICall();
-      if (response) {
-        this.persistLogin(
-          response.tokens.access.token,
-          response.user.email,
-          response.user.walletMoney,
-          response.user.name,
-          response.user._id
-        );
-        this.setState({
-          email: "",
-          password: ""
-        });
-        message.success("Logged in successfully");
-        this.props.history.push("/products");
-      }
+    const response = await this.performAPICall();
+    if (response) {
+      this.persistLogin(
+        response.tokens.access.token,
+        response.user.email,
+        response.user.walletMoney,
+        response.user.name,
+        response.user._id
+      );
+      this.setState({
+        email: "",
+        password: "",
+      });
+      message.success("Logged in successfully");
+      this.props.history.push("/products");
+    }
     // }
-    
   };
 
   /**
@@ -253,9 +237,9 @@ class Login extends React.Component {
               className="input-field"
               prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder="email"
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  email: e.target.value
+                  email: e.target.value,
                 });
               }}
             />
@@ -264,9 +248,9 @@ class Login extends React.Component {
               className="input-field"
               prefix={<LockOutlined className="site-form-item-icon" />}
               placeholder="Password"
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  password: e.target.value
+                  password: e.target.value,
                 });
               }}
             />
@@ -288,9 +272,6 @@ class Login extends React.Component {
   }
 }
 
-
 // export default Login;
 
-
 export default withRouter(Login);
-
