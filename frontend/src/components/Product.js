@@ -48,15 +48,11 @@ export default function Product(props) {
 
           {/* Display star rating for the product on a scale of 5 */}
           <div>
-
-
-
             <Rate
               className="product-rating"
               disabled={true}
               defaultValue={props.product.rating}
             />
-
           </div>
 
           {/* Display the "Add to Cart" button */}
