@@ -53,6 +53,11 @@ userSchema.methods.isPasswordMatch = async function (password) {
 
 
 
+/* 
+ * Create a Mongoose model out of userSchema and export the model as "User"
+ * Note: The model should be accessible in a different module when imported like below
+ * const { User } = require("<user.model file path>");
+ */
 /**
  * @typedef User
  */
