@@ -119,3 +119,5 @@ dist
 package-lock.json
 .DS_Store
 build/
+node_modules
+node_modules/
