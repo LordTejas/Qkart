@@ -121,3 +121,5 @@ package-lock.json
 build/
 node_modules
 node_modules/
+frontend/node_modules
+frontend/node_modules/
