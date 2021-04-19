@@ -4,6 +4,8 @@
 ecosystem.config.json merge=copy-merge
 jest.config.js merge=copy-merge
 package.json merge=copy-merge
+package-lock.json merge=copy-merge
+pnpm-lock.yaml merge=copy-merge
 setup.sh merge=copy-merge
 
 # __CRIO__
