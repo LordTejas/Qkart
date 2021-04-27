@@ -36,7 +36,7 @@ app.options("*", cors());
 
 // TODO: CRIO_TASK_MODULE_AUTH - Initialize passport and add "jwt" authentication strategy
 
-// v1 api routes
+// Reroute all API request starting with "/v1" route
 app.use("/v1", routes);
 
 // send back a 404 error for any unknown api request
