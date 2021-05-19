@@ -129,7 +129,7 @@ describe("User routes", () => {
         expect(res.status).toEqual(httpStatus.BAD_REQUEST);
       });
 
-      it("should return 400 error if address field isn't of a minimum length", async () => {
+      it("should return 400 error if address field isn't at least 20 characters long", async () => {
         await insertUsers([userOne]);
 
         const res = await request(app)
