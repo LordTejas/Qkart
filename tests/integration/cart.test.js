@@ -230,12 +230,13 @@ describe("Cart routes", () => {
       await insertProducts([productOne, productTwo]);
       await insertCart([emptyCart]);
 
+      const initialQuantity = 2;
       await request(app)
         .post(`/v1/cart`)
         .set("Authorization", `Bearer ${userOneAccessToken}`)
         .send({
           productId: productOne._id,
-          quantity: 5,
+          quantity: initialQuantity,
         })
         .expect(httpStatus.CREATED);
 
