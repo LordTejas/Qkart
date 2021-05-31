@@ -15,8 +15,8 @@ const { authService, userService, tokenService } = require("../services");
  * {
  *  "user": {
  *      "_id": "5f71b31888ba6b128ba16205",
- *      "name": "Rohin",
- *      "email": "rohinrohin@gmail.com",
+ *      "name": "crio-user",
+ *      "email": "crio-user@gmail.com",
  *      "password": "$2a$08$bzJ999eS9JLJFLj/oB4he.0UdXxcwf0WS5lbgxFKgFYtA5vV9I3vC",
  *      "createdAt": "2020-09-28T09:55:36.358Z",
  *      "updatedAt": "2020-09-28T09:55:36.358Z",
@@ -47,8 +47,8 @@ const register = catchAsync(async (req, res) => {
  * {
  *  "user": {
  *      "_id": "5f71b31888ba6b128ba16205",
- *      "name": "Rohin",
- *      "email": "rohinrohin@gmail.com",
+ *      "name": "crio-user",
+ *      "email": "crio-user@gmail.com",
  *      "password": "$2a$08$bzJ999eS9JLJFLj/oB4he.0UdXxcwf0WS5lbgxFKgFYtA5vV9I3vC",
  *      "createdAt": "2020-09-28T09:55:36.358Z",
  *      "updatedAt": "2020-09-28T09:55:36.358Z",
