@@ -12,6 +12,8 @@ const ApiError = require("../utils/ApiError");
  * --- set the `req.user` property as the user object corresponding to the authenticated token
  * --- resolve the promise
  */
+const verifyCallback = (req, resolve, reject) => async (err, user, info) => {
+};
 
 /**
  * Auth middleware to authenticate using Passport "jwt" strategy with sessions disabled and a custom callback function
