@@ -76,6 +76,7 @@ describe("Auth routes", () => {
     });
 
     test("should return 200 error if email is already used", async () => {
+      // Ref - https://stackoverflow.com/a/53144807
       await insertUsers([userOne]);
       newUser.email = userOne.email;
 
