@@ -269,7 +269,7 @@ export default class Cart extends React.Component {
   refreshCart = async () => {
     const cart = await this.getCart();
 
-    if (cart.cartItems) {
+    if (cart && cart.cartItems) {
       this.setState({
         items: cart.cartItems.map((item) => ({
           ...item,
@@ -435,11 +435,11 @@ export default class Cart extends React.Component {
             type="primary"
             icon={<ShoppingCartOutlined />}
             onClick={() => {
-              // if (this.state.items.length) {
-              this.props.history.push("/checkout");
-              // } else {
-              // message.error("You must add items to cart first");
-              // }
+              if (this.state.items.length) {
+                this.props.history.push("/checkout");
+              } else {
+                message.error("You must add items to cart first");
+              }
             }}
           >
             <strong> Checkout</strong>
