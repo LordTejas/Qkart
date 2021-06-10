@@ -247,7 +247,6 @@ export default class Cart extends React.Component {
     this.setState({
       loading: false,
     });
-    debugger;
     if (
       statusCode === "204" ||
       this.validateResponse(errored, response, statusCode)
@@ -268,7 +267,6 @@ export default class Cart extends React.Component {
    */
   refreshCart = async () => {
     const cart = await this.getCart();
-    debugger;
     if (cart && cart.cartItems) {
       this.setState({
         items: cart.cartItems.map((item) => ({
@@ -307,9 +305,6 @@ export default class Cart extends React.Component {
     this.refreshCart();
   }
 
-  componentDidUpdate() {
-    debugger;
-  }
   /**
    * Creates the view for the product quantity added to cart
    *
