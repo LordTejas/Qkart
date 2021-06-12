@@ -52,16 +52,15 @@ describe("Cart test", () => {
       // - the "statusCode" field of response is "400 BAD REQUEST"
     });
 
-    it("should throw 400 error if address is not set", async () => {
+    it("should throw 400 error if address is not set - when User.hasSetNonDefaultAddress() returns false", async () => {
       expect(userTwo.address).toEqual(config.default_address);
 
       mockingoose(Cart).toReturn(cartWithProductsUserTwo, "findOne");
 
       // create a mock function for User model's hasSetNonDefaultAddress() instance method
       const hasSetNonDefaultAddressMock = jest.fn();
-      userTwo.hasSetNonDefaultAddress = hasSetNonDefaultAddressMock.mockReturnValue(
-        false
-      );
+      userTwo.hasSetNonDefaultAddress =
+        hasSetNonDefaultAddressMock.mockReturnValue(false);
 
       const res = cartService.checkout(userTwo);
 
