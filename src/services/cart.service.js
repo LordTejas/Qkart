@@ -61,7 +61,7 @@ const addProductToCart = async (user, productId, quantity) => {
  * --- status code  - 400 BAD REQUEST
  * --- message - "Product not in cart"
  *
- * - Otherwise, update the product's quantity in user's cart to the new quantity provided
+ * - Otherwise, update the product's quantity in user's cart to the new quantity provided and return the cart object
  *
  *
  * @param {User} user

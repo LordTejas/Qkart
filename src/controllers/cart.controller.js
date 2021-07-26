@@ -56,7 +56,7 @@ const addProductToCart = catchAsync(async (req, res) => {
  * Update product quantity in cart
  * - If updated quantity > 0, 
  * --- update product quantity in user's cart
- * --- return "200 OK" and the updated user object
+ * --- return "200 OK" and the updated cart object
  * - If updated quantity == 0, 
  * --- delete the product from user's cart
  * --- return "204 NO CONTENT"
