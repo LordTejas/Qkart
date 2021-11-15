@@ -16,7 +16,7 @@ const jwtOptions = {
 // TODO: CRIO_TASK_MODULE_AUTH - Implement verify callback for passport strategy to find the user whose token is passed
 /**
  * Logic to find the user matching the token passed
- * - If payload type isn't `tokenTypes.ACCESS` return an Error() with message, "Invalid token type" in the callback function
+ * - If payload type isn't `tokenTypes.ACCESS` *throw* an Error() with message, "Invalid token type" in the callback function
  * - Find user object matching the decoded jwt token
  * - If there's a valid user, return the user in the callback function
  * - If user not found, return `false` in the user field in the callback function
