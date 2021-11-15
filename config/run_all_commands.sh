@@ -7,9 +7,9 @@ GITLAB_UPLOAD_DESTINATION="GITLAB_CRIO_DO"
 
 # path to root folders - must exist
 #INPUT_PROJECT_ROOT_PATH="/home/arun/workspace/crio/"
-STUB_GENERATION="/Users/nabhanpv/Desktop/Crio/Platform/solution_and_stub_creator"
-INPUT_PROJECT_ROOT_PATH="/Users/nabhanpv/Desktop/Crio/ME_MASTER_SOLUTIONS/me_qkart_backend_master"
-RESULTS_ROOT_FOLDER="/Users/nabhanpv/Desktop/Crio/SOLUTIONS_AND_STUBS_RESULTS/me_qkart_backend"
+STUB_GENERATION="/Users/admin/Desktop/ME/solution_and_stub_creator"
+INPUT_PROJECT_ROOT_PATH="/Users/admin/Desktop/ME/ME_MASTER_SOLUTIONS/me_qkart_backend_master"
+RESULTS_ROOT_FOLDER="/Users/admin/Desktop/ME/SOLUTIONS_AND_STUBS_RESULTS/me_qkart_backend"
 #INPUT_PROJECT_ROOT_PATH="/home/arun/workspace/crio/ME_INTERVIEW_PREP_JAVA/me_interview_prep_java"
 #RESULTS_ROOT_FOLDER="/home/arun/workspace/crio/ME_INTERVIEW_PREP_JAVA/solution_and_stubs"
 # additional needed files - must exist
