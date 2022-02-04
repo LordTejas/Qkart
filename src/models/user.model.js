@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 // NOTE - "validator" external library and not the custom middleware at src/middlewares/validate.js
 const validator = require("validator");
-const bcrypt = require("bcryptjs");
 const config = require("../config/config");
 
 const userSchema = mongoose.Schema(
