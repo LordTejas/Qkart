@@ -61,7 +61,7 @@ describe("Auth routes", () => {
       });
       const next = jest.fn();
 
-      await auth()(req, httpMocks.createResponse(), next);
+      await auth(req, httpMocks.createResponse(), next);
 
       expect(next).toHaveBeenCalledWith();
       expect(req.user.email).toEqual(newUser.email);
@@ -238,7 +238,7 @@ describe("Auth routes", () => {
       });
       const next = jest.fn();
 
-      await auth()(req, httpMocks.createResponse(), next);
+      await auth(req, httpMocks.createResponse(), next);
 
       expect(next).toHaveBeenCalledWith();
       expect(req.user._id).toEqual(userOne._id);
@@ -249,7 +249,7 @@ describe("Auth routes", () => {
       const req = httpMocks.createRequest();
       const next = jest.fn();
 
-      await auth()(req, httpMocks.createResponse(), next);
+      await auth(req, httpMocks.createResponse(), next);
 
       expect(next).toHaveBeenCalledWith(expect.any(ApiError));
       expect(next).toHaveBeenCalledWith(
@@ -267,7 +267,7 @@ describe("Auth routes", () => {
       });
       const next = jest.fn();
 
-      await auth()(req, httpMocks.createResponse(), next);
+      await auth(req, httpMocks.createResponse(), next);
 
       expect(next).toHaveBeenCalledWith(expect.any(ApiError));
       expect(next).toHaveBeenCalledWith(
@@ -294,7 +294,7 @@ describe("Auth routes", () => {
       });
       const next = jest.fn();
 
-      await auth()(req, httpMocks.createResponse(), next);
+      await auth(req, httpMocks.createResponse(), next);
 
       expect(next).toHaveBeenCalledWith(expect.any(ApiError));
       expect(next).toHaveBeenCalledWith(
@@ -321,7 +321,7 @@ describe("Auth routes", () => {
       });
       const next = jest.fn();
 
-      await auth()(req, httpMocks.createResponse(), next);
+      await auth(req, httpMocks.createResponse(), next);
 
       expect(next).toHaveBeenCalledWith(expect.any(ApiError));
       expect(next).toHaveBeenCalledWith(
@@ -346,7 +346,7 @@ describe("Auth routes", () => {
       });
       const next = jest.fn();
 
-      await auth()(req, httpMocks.createResponse(), next);
+      await auth(req, httpMocks.createResponse(), next);
 
       expect(next).toHaveBeenCalledWith(expect.any(ApiError));
       expect(next).toHaveBeenCalledWith(
@@ -363,7 +363,7 @@ describe("Auth routes", () => {
       });
       const next = jest.fn();
 
-      await auth()(req, httpMocks.createResponse(), next);
+      await auth(req, httpMocks.createResponse(), next);
 
       expect(next).toHaveBeenCalledWith(expect.any(ApiError));
       expect(next).toHaveBeenCalledWith(
