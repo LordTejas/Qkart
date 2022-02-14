@@ -6,18 +6,18 @@ const { cartController } = require("../../controllers/");
 
 const router = express.Router();
 
-router.get("/", auth(), cartController.getCart);
+router.get("/", auth, cartController.getCart);
 
 router.post(
   "/",
-  auth(),
+  auth,
   validate(cartValidation.addProductToCart),
   cartController.addProductToCart
 );
 
 router.put(
   "/",
-  auth(),
+  auth,
   validate(cartValidation.addProductToCart),
   cartController.updateProductInCart
 );
