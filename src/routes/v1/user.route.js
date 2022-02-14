@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.put(
   "/:userId",
-  auth(),
+  auth,
   validate(userValidation.setAddress),
   userController.setAddress
 );
