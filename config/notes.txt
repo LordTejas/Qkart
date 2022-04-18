@@ -1,2 +1,0 @@
-Before regenerating stubs
-- To comment out the "JwtStrategy" creation and export lines in the passport.js file
