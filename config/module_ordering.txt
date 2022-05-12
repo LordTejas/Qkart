@@ -1,5 +1,0 @@
-UNDERSTANDING_BASICS, echo 'Done module understanding basics'
-AUTH, echo 'Done module auth'
-CART, echo 'Done module cart'
-TEST, echo 'Done module test'
-DEPLOYMENT, echo 'Done module deployment'
