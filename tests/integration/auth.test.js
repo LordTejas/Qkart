@@ -55,7 +55,7 @@ describe("Auth routes", () => {
 
     test("returned token is valid for user", async () => {
       const res = await request(app).post("/v1/auth/register").send(newUser);
-      console.log(res.body.tokens.access.token, newUser)
+
       const req = httpMocks.createRequest({
         headers: { Authorization: `Bearer ${res.body.tokens.access.token}` },
       });
