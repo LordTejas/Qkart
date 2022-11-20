@@ -2,6 +2,7 @@ const { User } = require("../models");
 const httpStatus = require("http-status");
 const ApiError = require("../utils/ApiError");
 const bcrypt = require("bcryptjs");
+const { default: isEmail } = require("validator/lib/isEmail");
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement getUserById(id)
 /**
@@ -11,6 +12,11 @@ const bcrypt = require("bcryptjs");
  * @returns {Promise<User>}
  */
 
+const getUserById = async (userId) => {
+    const result = await User.findById(userId);
+    return result;
+}
+
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement getUserByEmail(email)
 /**
  * Get user by email
@@ -18,6 +24,11 @@ const bcrypt = require("bcryptjs");
  * @param {string} email
  * @returns {Promise<User>}
  */
+
+const getUserByEmail = async (email) => {
+    const result = await User.findOne({email: email});
+    return result;
+}
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement createUser(user)
 /**
@@ -43,3 +54,25 @@ const bcrypt = require("bcryptjs");
  */
 
 
+ const encryptPassword = async (password) => {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+    return hashedPassword;
+};
+   
+
+
+const createUser = async (body) => {
+    
+    if (await User.isEmailTaken(body.email)) throw new ApiError(400, "Email already taken");
+    body.password = await encryptPassword(body.password);
+    const doc = await User.create(body);
+    return doc;
+}
+
+
+module.exports = {
+    getUserById,
+    getUserByEmail,
+    createUser
+}
