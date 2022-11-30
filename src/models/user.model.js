@@ -56,6 +56,17 @@ userSchema.statics.isEmailTaken = async function (email) {
 
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS
+
+/**
+ * Check if entered password matches the user's password
+ * @param {string} password
+ * @returns {Promise<boolean>}
+ */
+userSchema.methods.isPasswordMatch = async function (password) {
+};
+
+
+
 /*
  * Create a Mongoose model out of userSchema and export the model as "User"
  * Note: The model should be accessible in a different module when imported like below
