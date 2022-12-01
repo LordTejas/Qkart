@@ -11,6 +11,7 @@ const passport = require("passport");
 
 const app = express();
 
+
 // set security HTTP headers - https://helmetjs.github.io/
 app.use(helmet());
 
@@ -19,6 +20,9 @@ app.use(express.json());
 
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
+
+app.use(passport.initialize());
+passport.use("jwt", jwtStrategy);
 
 // gzip compression
 app.use(compression());

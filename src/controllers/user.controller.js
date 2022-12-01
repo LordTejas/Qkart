@@ -2,6 +2,7 @@ const httpStatus = require("http-status");
 const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
 const { userService } = require("../services");
+const { http } = require("winston");
 
 // TODO: CRIO_TASK_MODULE_UNDERSTANDING_BASICS - Implement getUser() function
 /**
@@ -43,10 +44,10 @@ const getUser = catchAsync(async (req, res) => {
   
   // console.log(`userID : ${userId}`);
   const result = await userService.getUserById(userId);
-  // console.log(result);
 
+  if (userId !== req.user.id) throw new ApiError(httpStatus.FORBIDDEN, "Forbidden Access!");
   if (!result) throw new ApiError(404, "User not found");
-  res.send(result, httpStatus.OK);
+  res.status(httpStatus.OK).send(result);
 });
 
 

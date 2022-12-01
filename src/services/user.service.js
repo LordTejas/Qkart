@@ -63,11 +63,10 @@ const getUserByEmail = async (email) => {
 
 
 const createUser = async (body) => {
-    
-    if (await User.isEmailTaken(body.email)) throw new ApiError(400, "Email already taken");
-    body.password = await encryptPassword(body.password);
-    const doc = await User.create(body);
-    return doc;
+    if (await User.isEmailTaken(body.email)) throw new ApiError(httpStatus.OK, "Email already taken");
+    const hashedPassword = await bcrypt.hash(body.password, 10);
+    const user = await User.create({...body, password: hashedPassword});
+    return user;
 }
 
 
