@@ -11,7 +11,6 @@ const passport = require("passport");
 
 const app = express();
 
-
 // set security HTTP headers - https://helmetjs.github.io/
 app.use(helmet());
 
@@ -31,12 +30,9 @@ app.use(compression());
 app.use(cors());
 app.options("*", cors());
 
-// TODO: CRIO_TASK_MODULE_AUTH - Initialize passport and add "jwt" authentication strategy
 
-// Reroute all API request starting with "/v1" route
 app.use("/v1", routes);
 
-// send back a 404 error for any unknown api request
 app.use((req, res, next) => {
     next(new ApiError(httpStatus.NOT_FOUND, "Not found"));
 });

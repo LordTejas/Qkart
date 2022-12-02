@@ -7,6 +7,10 @@ const router = express.Router();
 
 router.use('/users', userRoute);
 router.use("/auth", authRoute);
+
+const cartRoute = require("./cart.route");
+
 router.use("/products", productRoute);
+router.use("/cart", cartRoute);
 
 module.exports = router;
