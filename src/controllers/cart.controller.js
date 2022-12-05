@@ -33,7 +33,7 @@ const { cartService } = require("../services");
  */
 const getCart = catchAsync(async (req, res) => {
   const cart = await cartService.getCartByUser(req.user);
-  res.send(cart);
+  res.status(httpStatus.OK).send(cart);
 });
 
 /**
@@ -68,6 +68,26 @@ const addProductToCart = catchAsync(async (req, res) => {
  *
  */
 const updateProductInCart = catchAsync(async (req, res) => {
+
+  // Check quantity
+  if (req.body.quantity === 0) {
+    await cartService.deleteProductFromCart(
+      req.user,
+      req.body.productId
+    );
+
+    res.status(httpStatus.NO_CONTENT).send();
+
+  } else {
+    const cart = await cartService.updateProductInCart(
+      req.user,
+      req.body.productId,
+      req.body.quantity
+    );
+
+    res.status(httpStatus.OK).send(cart);
+  }
+
 });
 
 

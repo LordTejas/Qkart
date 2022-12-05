@@ -12,8 +12,9 @@ const { default: isEmail } = require("validator/lib/isEmail");
  * @returns {Promise<User>}
  */
 
-const getUserById = async (userId) => {
+const getUserById = async (userId, q) => {
     const result = await User.findById(userId);
+    if (q) return {address: result[q]};
     return result;
 }
 
@@ -69,12 +70,6 @@ const createUser = async (body) => {
     return user;
 }
 
-
-module.exports = {
-    getUserById,
-    getUserByEmail,
-    createUser
-}
 // TODO: CRIO_TASK_MODULE_CART - Implement getUserAddressById()
 /**
  * Get subset of user's data by id
@@ -84,6 +79,9 @@ module.exports = {
  * @returns {Promise<User>}
  */
 const getUserAddressById = async (id) => {
+    const user = await User.findOne({_id: id}, {email: 1, address: 1});
+
+    return user;
 };
 
 /**
@@ -98,3 +96,10 @@ const setAddress = async (user, newAddress) => {
   return user.address;
 };
 
+module.exports = {
+    getUserById,
+    getUserByEmail,
+    createUser,
+    getUserAddressById,
+    setAddress
+}

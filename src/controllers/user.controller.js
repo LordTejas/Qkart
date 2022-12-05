@@ -48,9 +48,10 @@ const { http } = require("winston");
  */
 const getUser = catchAsync(async (req, res) => {
   const userId = req.params.userId;
+  const q = req.query.q;
   
   // console.log(`userID : ${userId}`);
-  const result = await userService.getUserById(userId);
+  const result = await userService.getUserById(userId, q);
 
   if (userId !== req.user.id) throw new ApiError(httpStatus.FORBIDDEN, "Forbidden Access!");
   if (!result) throw new ApiError(404, "User not found");
@@ -59,7 +60,7 @@ const getUser = catchAsync(async (req, res) => {
 
 
 const setAddress = catchAsync(async (req, res) => {
-  const user = await userService.getUserById(req.params.userId);
+  const user = await userService.getUserAddressById(req.params.userId);
 
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, "User not found");
@@ -73,7 +74,7 @@ const setAddress = catchAsync(async (req, res) => {
 
   const address = await userService.setAddress(user, req.body.address);
 
-  res.send({
+  res.status(httpStatus.OK).send({
     address: address,
   });
 });
