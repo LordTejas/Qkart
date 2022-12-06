@@ -192,7 +192,7 @@ const checkout = async (user) => {
   // console.log("Wallet: ", cartTotal);
 
   // Checks Zero balance
-  if (user.walletMoney === 0) throw new ApiError(httpStatus.BAD_REQUEST, "wallet balance is insufficient");
+  if (user.walletMoney === 0 || user.walletMoney < cartTotal) throw new ApiError(httpStatus.BAD_REQUEST, "wallet balance is insufficient");
 
   // Make checkout
   cart.cartItems = [];
