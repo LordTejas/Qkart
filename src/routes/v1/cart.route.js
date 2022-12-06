@@ -24,6 +24,7 @@ router.put(
 
 router.put(
   "/checkout",
+  auth,
   cartController.checkout
 );
 

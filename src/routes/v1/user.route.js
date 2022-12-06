@@ -8,7 +8,7 @@ const userValidator = validate(userValidation.getUser);
 const router = express.Router();
 
 const auth = require("../../middlewares/auth");
-router.get('/:userId', auth, validate(userValidation.getUser), userController.getUser);
+router.get('/:userId', auth, userValidator, userController.getUser);
 
 
 router.put(

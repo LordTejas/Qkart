@@ -62,7 +62,7 @@ userSchema.statics.isEmailTaken = async function (email) {
  * @returns {Promise<boolean>}
  */
 userSchema.methods.isPasswordMatch = async function (password) {
-  return await bcrypt.compare(password, user.password);
+  return await bcrypt.compare(password, this.password);
 };
 
 
@@ -75,7 +75,7 @@ userSchema.methods.isPasswordMatch = async function (password) {
  */
 userSchema.methods.hasSetNonDefaultAddress = async function () {
   const user = this;
-   return user.address === config.default_address;
+  return user.address !== config.default_address;
 };
 
 /*

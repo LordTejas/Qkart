@@ -76,6 +76,7 @@ const addProductToCart = async (user, productId, quantity) => {
   await cart.cartItems.push({product, quantity});
 
   await cart.save();
+
   return cart;
 };
 
@@ -177,6 +178,29 @@ const deleteProductFromCart = async (user, productId) => {
  * @throws {ApiError} when cart is invalid
  */
 const checkout = async (user) => {
+  const cart = await Cart.findOne({email: user.email});
+  if (!cart) throw new ApiError(httpStatus.NOT_FOUND, "User has no cart to checkout!");
+
+  // Check empty cart
+  if (cart.cartItems.length === 0) throw new ApiError(httpStatus.BAD_REQUEST, "User cart is empty, Add some products to checkout!");
+
+  // Check default address set or not
+  if (!await user.hasSetNonDefaultAddress()) throw new ApiError(httpStatus.BAD_REQUEST, "Please set a default shipping address");
+
+  // Check min balance available
+  const cartTotal = cart.cartItems.reduce((acc, curr) => acc + (curr.product.cost * curr.quantity), 0);
+  // console.log("Wallet: ", cartTotal);
+
+  // Checks Zero balance
+  if (user.walletMoney === 0) throw new ApiError(httpStatus.BAD_REQUEST, "wallet balance is insufficient");
+
+  // Make checkout
+  cart.cartItems = [];
+  await cart.save();
+
+  // Charge user
+  user.walletMoney -= cartTotal;
+  await user.save();
 };
 
 module.exports = {
